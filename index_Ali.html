@@ -1,0 +1,273 @@
+<!DOCTYPE html>
+<html>
+
+<head>
+    <meta name="viewport" content="initial-scale=1, maximum-scale=1, user-scalable=no" />
+    <!-- Angulars Material CSS now available via Google CDN; version 0.6 used here -->
+    <link rel="stylesheet" href="bower_components/angular-material/angular-material.css">
+    <link rel="stylesheet" href="bower_components/fa/css/font-awesome.min.css">
+    <link rel="stylesheet" href="bower_components/angular-material/themes/light-blue-dark-theme.css">
+    <link rel="stylesheet" href="bower_components/Style/alertify.core.css">
+    <link rel="stylesheet" href="bower_components/Style/alertify.default.css">
+    <link rel="stylesheet" href="bower_components/Style/style.css">
+    <link rel="stylesheet" href="bower_components/Morphext/dist/morphext.css">
+</head>
+
+<body ng-app="DecMak">
+    <div ng-controller="AppCtrl" layout="column" layout-fill>
+        
+                <div layout="column" class="md-whiteframe-z1">
+                            <md-toolbar class="md-light-blue-dark-theme">
+                                <h2 class="md-toolbar-tools">
+                            <span>Ask the world a question (Yes/No)</span>
+                        </h2>
+                            </md-toolbar>
+                            <div layout="row" layout-padding>
+                                <md-input-container flex="80">
+                                    <label>Ask a Question</label>
+                                    <input type="text" id="quesbox" placeholder="" ng-model="YourValue" />
+                                </md-input-container>
+                                <md-button flex="20" class="md-raised md-light-blue-dark-theme md-primary" ng-click="ques()">Ask</i>
+                                </md-button>
+                            </div>
+                        </div>
+    
+    </br>
+    
+        <md-toolbar class="md-light-blue-dark-theme md-whiteframe-z1" layout-margin layout-padding>
+                             <span>Question appears in this section for other users</span>
+                        </h2>
+                            </md-toolbar>
+</br>
+<div layout="row" layout-margin layout-padding class="md-whiteframe-z1" layout-align="center center">
+                                                    <md-button flex class="md-raised md-light-blue-dark-theme md-accent">Yes</md-button>
+                                                    <md-button flex class="md-raised md-light-blue-dark-theme md-warn">No</md-button>
+    <md-button flex class="md-raised md-light-blue-dark-theme md-primary">Skip</md-button>
+                                                </div>
+<md-toolbar class="md-light-blue-dark-theme md-accent md-whiteframe-z1" layout-margin layout-padding>
+                             <span>Another colour for a different question</span>
+                        </h2>
+                            </md-toolbar>
+<div layout="row" layout-margin layout-padding class="md-whiteframe-z1" layout-align="center center">
+                                                    <md-button flex class="md-raised md-light-blue-dark-theme md-accent">Yes</md-button>
+                                                    <md-button flex class="md-raised md-light-blue-dark-theme md-warn">No</md-button>
+    <md-button flex class="md-raised md-light-blue-dark-theme md-primary">Skip</md-button>
+                                                </div>
+
+<md-subheader class="md-primary">Questions I have Asked</md-subheader>
+<md-list>
+      <md-item>
+        <md-item-content>
+          <div class="md-tile-content">
+            <h3>This is my question Blah blah blah</h3>
+            <h4>Yes=30, No=10</h4>
+            <p>
+              This is where the progress bar will go and all can be automated
+            </p>
+          </div>
+        </md-item-content>
+      </md-item>
+    </md-list>
+<md-list>
+      <md-item>
+        <md-item-content>
+          <div class="md-tile-content">
+            <h3>This is my question Blah blah blah</h3>
+            <h4>Yes=30, No=10</h4>
+            <p>
+              This is where the progress bar will go and all can be automated
+            </p>
+          </div>
+        </md-item-content>
+      </md-item>
+    </md-list>
+<md-list>
+      <md-item>
+        <md-item-content>
+          <div class="md-tile-content">
+            <h3>This is my question Blah blah blah</h3>
+            <h4>Yes=30, No=10</h4>
+            <p>
+              This is where the progress bar will go and all can be automated
+            </p>
+          </div>
+        </md-item-content>
+      </md-item>
+    </md-list>
+</br>
+        
+        <!-- This is where the main application starts-->
+        <md-toolbar class="md-light-blue-dark-theme logo">
+            <h2 class="md-toolbar-tools">
+                    <span> Decision Maker</span>
+                  </h2>
+        </md-toolbar>
+
+        <md-content>
+            <md-tabs md-selected="data.selectedIndex" class="md-light-blue-dark-theme">
+                <md-tab id="tab1" aria-controls="tab1-content">
+                    Make a Decision
+                </md-tab>
+                <md-tab id="tab2" aria-controls="tab1-content">
+                    Ask a Question
+                </md-tab>
+            </md-tabs>
+
+
+            <div layout="column">
+                <ng-switch on="data.selectedIndex" class="tabpanel-container">
+
+                    <div layout="column" layout-margin role="tabpanel" id="tab1-content" aria-labelledby="tab1" ng-switch-when="0" md-swipe-left="next()" md-swipe-right="previous()">
+
+                        <md-toolbar class="md-light-blue-dark-theme">
+                            <h2 class="md-toolbar-tools">
+                            <span>Add Options Below</span>
+                        </h2>
+                        </md-toolbar>
+
+                        <div layout="row" layout-padding class="md-whiteframe-z1">
+                            <md-input-container flex="80">
+                                <label>Add your options</label>
+                                <input type="text" id="choicebox" placeholder="" />
+                            </md-input-container>
+                            <md-button flex="20" class="md-raised md-light-blue-dark-theme md-primary" ng-click="putchoice()"><i class="fa fa-plus fa-2x"></i>
+                            </md-button>
+                        </div>
+                        </br>
+                        <div layout="column" class="md-whiteframe-z1" id="initialopt" style="display:none">
+                            <md-toolbar class="md-light-blue-dark-theme md-accent">
+                                <h2 class="md-toolbar-tools">
+                            <span id = "optchange">My Options are:</span>
+                        </h2>
+                            </md-toolbar>
+                            <md-list id="choices">
+                                <md-item ng-repeat="c in cho">
+                                    <md-item-content id="{{c}}">
+                                        <div layout="row" class="md-tile-content" layout-margin>
+                                            <div flex>
+                                                <h3 flex>{{c}} </h3>
+                                            </div>
+                                            <div layout-align="end end"><i style="color:red;" class="fa fa-2x fa-trash" id="{{c}}a" ng-click="remove()"></i>
+                                            </div>
+                                        </div>
+                                    </md-item-content>
+                                    <md-divider ng-if="!$last"></md-divider>
+                                </md-item>
+                            </md-list>
+                        </div>
+                        </br>
+                        <div layout="column" class="md-whiteframe-z1">
+                            <md-toolbar style="background-color: transparent">
+                                <div layout="row" class="md-toolbar-tools" layout-margin>
+                                    <md-button ng-click="makedecision()" flex class="md-raised md-accent"><i class="fa fa-check"></i> Make a Decision</md-button>
+                                </div>
+                            </md-toolbar>
+                            <md-toolbar style="background-color: transparent">
+                                <div layout="row" class="md-toolbar-tools" layout-margin>
+                                    <md-button aria-label="smthng" ng-click="tryagain()" class="md-raised md-light-blue-dark-theme md-primary"><i class="fa fa-repeat"></i> Start Again</md-button>
+
+                                    <md-button ng-click="retryagain()" flex class="md-raised md-light-blue-dark-theme md-primary"><i class="fa fa-refresh"></i> Retry Decision</md-button>
+                                </div>
+                            </md-toolbar>
+                        </div>
+                    </div>
+                </ng-switch>
+
+                <!--Tab 2-->
+                <ng-switch on="data.selectedIndex" class="tabpanel-container">
+                    <div layout="column" layout-margin role="tabpanel" id="tab1-content" aria-labelledby="tab2" ng-switch-when="1" md-swipe-left="next()" md-swipe-right="previous()">
+                        <div layout="column" class="md-whiteframe-z1">
+                            <md-toolbar class="md-light-blue-dark-theme">
+                                <h2 class="md-toolbar-tools">
+                            <span>Ask a Yes or No Question Below</span>
+                        </h2>
+                            </md-toolbar>
+                            <div layout="row" layout-padding>
+                                <md-input-container flex="80">
+                                    <label>Ask a Question</label>
+                                    <input type="text" id="quesbox" placeholder="" ng-model="YourValue" />
+                                </md-input-container>
+                                <md-button flex="20" class="md-raised md-light-blue-dark-theme md-primary" ng-click="ques()">Ask</i>
+                                </md-button>
+                            </div>
+                        </div>
+                        <br/>
+
+                        <div layout="column" class="md-whiteframe-z1">
+                            <md-toolbar class="md-light-blue-dark-theme md-accent">
+                                <h1 class="md-toolbar-tools"><b>My Question is:</b></h1>
+
+                            </md-toolbar>
+                            <md-content layout-margin layout-padding>
+                                <span>{{YourValue}}</span>
+                            </md-content>
+                        </div>
+                        <br/>
+
+                        <div layout="column" class="md-whiteframe-z1">
+                            <md-toolbar class="md-light-blue-dark-theme md-primary">
+                                <h1 class="md-toolbar-tools"><b>Your Answer is:</b></h1>
+
+                            </md-toolbar>
+                            <md-list id="answer">
+                                <md-item>
+                                    <md-item-content>
+                                        <div layout="row" layout-padding layout-align="center center">
+                                         
+                                                <div class="stage" layout="row" layout-padding style="width: 120px; height: 120px;">
+                                                    <div class="cubespinner" layout="row" layout-padding>
+                                                        <div class="face1">
+                                                            <md-button flex class="md-raised md-light-blue-dark-theme md-accent">Yes</md-button>
+                                                        </div>
+                                                        <div class="face2">
+                                                            <md-button flex class="md-raised md-light-blue-dark-theme md-warn">No</md-button>
+                                                        </div>
+                                                        <div class="face3">
+                                                            <md-button flex class="md-raised md-light-blue-dark-theme md-accent">Yes</md-button>
+                                                        </div>
+                                                        <div class="face4">
+                                                            <md-button flex class="md-raised md-light-blue-dark-theme md-warn">No</md-button>
+                                                        </div>
+                                                        <div class="face5">
+                                                            <md-button flex class="md-raised md-light-blue-dark-theme md-accent">Yes</md-button>
+                                                        </div>
+                                                        <div class="face6">
+                                                            <md-button flex class="md-raised md-light-blue-dark-theme md-warn">No</md-button>
+                                                        </div>
+                                                    </div>
+                                                </div>
+                                        </div>
+                                    </md-item-content>
+                                </md-item>
+                            </md-list>
+                            <div layout="row" layout-padding id="rotatingha" layout-align="center center">
+                                                    <md-button flex="50" id="yarotate" class="md-raised md-light-blue-dark-theme md-accent">Yes</md-button>
+                                                    <md-button flex="50" id="narotate" style="display:none" class="md-raised md-light-blue-dark-theme md-warn">No</md-button>
+                                                </div>
+                                                <div layout="row" layout-align="center center" layout-padding>
+                                                    <md-button flex="50" id="answerq" style="display:none" class="md-raised md-light-blue-dark-theme md-primary" ng-bind="qun">{{qun}}</md-button>
+                                                </div>
+                        </div>
+                    </div>
+                </ng-switch>
+            </div>
+        </md-content>
+-->
+    </div>
+
+    <!-- Angular Material Dependencies -->
+    <script src="bower_components/hammerjs/hammer.min.js"></script>
+    <script src="bower_components/angular/angular.min.js"></script>
+    <script src="bower_components/angular-animate/angular-animate.min.js"></script>
+    <script src="bower_components/angular-aria/angular-aria.min.js"></script>
+
+    <!-- Angular Material Javascript now available via Google CDN; version 0.6 used here -->
+    <script src="bower_components/angular-material/angular-material.js"></script>
+    <script src="bower_components/scripts/jquery.js"></script>
+    <script src="bower_components/Morphext/dist/morphext.min.js"></script>
+    <script src="bower_components/scripts/alertify.js"></script>
+    <script src="bower_components/scripts/app.js"></script>
+
+</body>
+
+</html>
