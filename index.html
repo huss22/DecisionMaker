@@ -191,13 +191,13 @@
                 <ng-switch on="data.selectedIndex" class="tabpanel-container">
                     <div layout="column" layout-margin role="tabpanel" id="tab4-content" aria-labelledby="tab4" ng-switch-when="3" md-swipe-left="next()" md-swipe-right="previous()">
                             <md-subheader class="md-primary">Questions I Have Asked the World</md-subheader>
-                            <md-list ng-repeat="question in myqs">
+                            <md-list ng-repeat="question in myqs | orderBy:'-$id'">
                                 <md-item>
                                     <md-item-content>
                                         <div layout="column" class="md-tile-content" layout="column">
                                             <div layout="row">
                                                 <h3 flex>{{ question.Question }}</h3>
-                                                <span style="color:red;" data-livestamp="{{question.timestamp}}"></span>
+                                                <span style="color:#03a9f4;" data-livestamp="{{question.timestamp}}"></span>
                                             </div>
 
                                             <div>
