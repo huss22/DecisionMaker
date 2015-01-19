@@ -9,7 +9,7 @@ connectedRef.on("value", function (snap) {
         $("#dced").slideDown();
     }
 });
-var app = angular.module('DecMak', ['ngMaterial', 'firebase', 'ui.bootstrap']);
+var app = angular.module('DecMak', ['ngMaterial', 'firebase', 'ui.bootstrap', 'ngTouch']);
 app
     .controller('AppCtrl', function ($scope, $rootScope, $location, $firebase) {
         var ref = new Firebase("https://decisionmaker.firebaseio.com/questions");
