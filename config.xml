@@ -24,10 +24,9 @@
     <feature name="org.apache.cordova.device-orientation" />
     <feature name="org.apache.cordova.dialogs" />
     <feature name="org.apache.cordova.file" />
-    <feature name="org.apache.cordova.globalization" android:required="false" />
+    <feature name="org.apache.cordova.globalization" />
     <feature name="org.apache.cordova.inappbrowser" />
     <feature name="org.apache.cordova.media" />
-    <feature name="org.apache.cordova.network-information" />
     <feature name="org.apache.cordova.splashscreen" />
 
     <!-- Third party plugins -->
