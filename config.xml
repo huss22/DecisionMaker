@@ -1,10 +1,10 @@
-<?xml version="1.1" encoding="UTF-8"?>
+<?xml version="1.0" encoding="UTF-8"?>
 
 <!-- config.xml reference: https://build.phonegap.com/docs/config-xml -->
 <widget xmlns     = "http://www.w3.org/ns/widgets"
         xmlns:gap = "http://phonegap.com/ns/1.0"
         id        = "com.huss22.decisionmaker"
-        version   = "1.0.0">
+        version   = "1.0.1">
 
     <name>Ask App</name>
 
@@ -24,7 +24,7 @@
     <feature name="org.apache.cordova.device-orientation" />
     <feature name="org.apache.cordova.dialogs" />
     <feature name="org.apache.cordova.file" />
-    <feature name="org.apache.cordova.globalization" />
+    <feature name="org.apache.cordova.globalization" android:required="false" />
     <feature name="org.apache.cordova.inappbrowser" />
     <feature name="org.apache.cordova.media" />
     <feature name="org.apache.cordova.network-information" />
