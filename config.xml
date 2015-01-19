@@ -18,6 +18,7 @@
 
     <!-- Plugins -->
     <preference name="permissions" value="none"/>
+    <preference name="android-minSdkVersion" value="11" />
     <!-- Core plugins -->
     <feature name="org.apache.cordova.device" />
     <feature name="org.apache.cordova.device-motion" />
