@@ -4,8 +4,8 @@
 <widget xmlns     = "http://www.w3.org/ns/widgets"
         xmlns:gap = "http://phonegap.com/ns/1.0"
         id        = "com.huss22.decisionmaker"
-        versionCode = "16"
-        version   = "1.0.2">
+        versionCode = "17"
+        version   = "1.0.3">
 
     <name>Ask App</name>
 
@@ -20,6 +20,7 @@
     <!-- Plugins -->
     <preference name="permissions" value="none"/>
     <preference name="android-minSdkVersion" value="11" />
+    <gap:plugin name="com.adobe.plugins.gaplugin" />
     <!-- Core plugins -->
     <feature name="org.apache.cordova.device" />
     <feature name="org.apache.cordova.device-motion" />
