@@ -16,3 +16,10 @@ window.setInterval(function() {
     $("#yarotate").toggle();
     $("#narotate").toggle();
 }, 1000);
+
+var gaPlugin;
+
+function onDeviceReady() {
+    gaPlugin = window.plugins.gaPlugin;
+    gaPlugin.init(successHandler, errorHandler, "UA-59414317-1", 10);
+}
