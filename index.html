@@ -25,15 +25,18 @@
 
         <md-content>
             <md-tabs md-selected="data.selectedIndex" class="md-light-blue-dark-theme">
-                <md-tab id="tab1" aria-controls="tab1-content">
-                    <i class="fa fa-question-circle fa-lg"></i>
+
+
+                <md-tab id="tab4" aria-controls="tab4-content">
+                    <i class="fa fa-bullhorn fa-lg"></i>
                     <br>
                     <div style="font-size:11px">
-                        <span>Decision</span>
+                        <span>My</span>
                         <br>
-                        <span>Maker</span>
+                        <span>Questions</span>
                     </div>
                 </md-tab>
+
                 <md-tab id="tab3" aria-controls="tab3-content">
                     <i class="fa fa-globe fa-lg"></i>
                     <br>
@@ -42,8 +45,17 @@
                         <br>
                         <span>World</span>
                     </div>
+                </md-tab>
 
 
+                <md-tab id="tab1" aria-controls="tab1-content">
+                    <i class="fa fa-question-circle fa-lg"></i>
+                    <br>
+                    <div style="font-size:11px">
+                        <span>Decision</span>
+                        <br>
+                        <span>Maker</span>
+                    </div>
                 </md-tab>
                 <md-tab id="tab2" aria-controls="tab2-content">
                     <i class="fa fa-puzzle-piece fa-lg"></i>
@@ -54,20 +66,91 @@
                         <span>The App</span>
                     </div>
                 </md-tab>
-                <md-tab id="tab4" aria-controls="tab4-content">
-                    <i class="fa fa-bullhorn fa-lg"></i>
-                    <br>
-                    <div style="font-size:11px">
-                        <span>My</span>
-                        <br>
-                        <span>Questions</span>
-                    </div>
-                </md-tab>
+
             </md-tabs>
 
             <div layout="column">
+                <!--Tab 4-->
                 <ng-switch on="data.selectedIndex" class="tabpanel-container">
-                    <div layout="column" layout-margin role="tabpanel" id="tab1-content" aria-labelledby="tab1" ng-switch-when="0" md-swipe-left="next()" md-swipe-right="previous()">
+                    <div layout="column" layout-margin role="tabpanel" id="tab4-content" aria-labelledby="tab4" ng-switch-when="0" md-swipe-left="next()" md-swipe-right="previous()">
+                        <md-subheader class="md-primary">Questions I Have Asked the World</md-subheader>
+                        <md-list ng-repeat="question in myqs | orderBy:'-$id'">
+                            <md-item>
+                                <md-item-content>
+                                    <div layout="column" class="md-tile-content" layout="column">
+                                        <div layout="row">
+                                            <h3 flex>{{ question.Question }}</h3>
+                                            <span style="color:#03a9f4;" data-livestamp="{{question.timestamp}}"></span>
+                                        </div>
+
+                                        <div>
+                                            <progress layout-margin>
+                                                <bar value="100*question.Yes/(+question.Yes + question.No + question.Skip) | number:0" type="success"><span ng-hide="bar.value < 5">{{100*question.Yes/(+question.Yes + question.No + question.Skip) | number:0}}%</span>
+                                                </bar>
+                                                <bar value="100*question.No/(+question.Yes + question.No + question.Skip) | number:0" type="danger"><span ng-hide="bar.value < 5">{{100*question.No/(+question.Yes + question.No + question.Skip) | number:0}}%</span>
+                                                </bar>
+                                                <bar value="100*question.Skip/(+question.Yes + question.No + question.Skip) - 1 | number:0" type="info"><span ng-hide="bar.value < 5">{{100*question.Skip/(+question.Yes + question.No + question.Skip) | number:0}}%</span>
+                                                </bar>
+                                            </progress>
+                                        </div>
+                                    </div>
+                                </md-item-content>
+                            </md-item>
+                        </md-list>
+                    </div>
+                </ng-switch>
+                <!--Tab 2-->
+                <ng-switch on="data.selectedIndex" class="tabpanel-container">
+                    <div layout="column" layout-margin role="tabpanel" id="tab1-content" aria-labelledby="tab2" ng-switch-when="3" md-swipe-left="next()" md-swipe-right="previous()">
+                        <div layout="column" class="md-whiteframe-z1">
+                            <md-toolbar class="md-light-blue-dark-theme">
+                                <h2 class="md-toolbar-tools">
+                            <span>Ask a Yes or No Question Below</span>
+                        </h2>
+                            </md-toolbar>
+                            <div layout="row" layout-padding>
+                                <md-input-container flex="80">
+                                    <label>Ask a Question</label>
+                                    <input type="text" id="quesbox" placeholder="" ng-model="YourValue" />
+                                </md-input-container>
+                                <md-button flex="20" class="md-raised md-light-blue-dark-theme md-primary" ng-click="ques()">Ask</i>
+                                </md-button>
+                            </div>
+                        </div>
+                        <br/>
+
+                        <div layout="column" class="md-whiteframe-z1">
+                            <md-toolbar class="md-light-blue-dark-theme md-accent">
+                                <h1 class="md-toolbar-tools"><b>My Question is:</b></h1>
+
+                            </md-toolbar>
+                            <md-content layout-margin layout-padding>
+                                <span>{{YourValue}}</span>
+                            </md-content>
+                        </div>
+                        <br/>
+
+                        <div layout="column" class="md-whiteframe-z1">
+                            <md-toolbar class="md-light-blue-dark-theme md-primary">
+                                <h1 class="md-toolbar-tools"><b>Your Answer is:</b></h1>
+
+                            </md-toolbar>
+                            <div layout="row" layout-padding id="rotatingha" layout-align="center center">
+                                <md-button flex="50" id="yarotate" class="md-raised md-light-blue-dark-theme md-accent">Yes</md-button>
+                                <md-button flex="50" id="narotate" style="display:none" class="md-raised md-light-blue-dark-theme md-warn">No</md-button>
+                            </div>
+                            <div layout="row" layout-align="center center" layout-padding id="spinningSquaresG" style="display:none">
+                                <md-progress-circular md-mode="indeterminate"></md-progress-circular>
+                            </div>
+                            <div layout="row" layout-align="center center" layout-padding>
+                                <md-button flex="50" id="answerq" style="display:none" class="md-raised md-light-blue-dark-theme md-primary" ng-bind="qun">{{qun}}</md-button>
+                            </div>
+                        </div>
+                    </div>
+                </ng-switch>
+
+                <ng-switch on="data.selectedIndex" class="tabpanel-container">
+                    <div layout="column" layout-margin role="tabpanel" id="tab1-content" aria-labelledby="tab1" ng-switch-when="2" md-swipe-left="next()" md-swipe-right="previous()">
 
                         <md-toolbar class="md-light-blue-dark-theme">
                             <h2 class="md-toolbar-tools">
@@ -123,55 +206,6 @@
                     </div>
                 </ng-switch>
 
-                <!--Tab 2-->
-                <ng-switch on="data.selectedIndex" class="tabpanel-container">
-                    <div layout="column" layout-margin role="tabpanel" id="tab1-content" aria-labelledby="tab2" ng-switch-when="2" md-swipe-left="next()" md-swipe-right="previous()">
-                        <div layout="column" class="md-whiteframe-z1">
-                            <md-toolbar class="md-light-blue-dark-theme">
-                                <h2 class="md-toolbar-tools">
-                            <span>Ask a Yes or No Question Below</span>
-                        </h2>
-                            </md-toolbar>
-                            <div layout="row" layout-padding>
-                                <md-input-container flex="80">
-                                    <label>Ask a Question</label>
-                                    <input type="text" id="quesbox" placeholder="" ng-model="YourValue" />
-                                </md-input-container>
-                                <md-button flex="20" class="md-raised md-light-blue-dark-theme md-primary" ng-click="ques()">Ask</i>
-                                </md-button>
-                            </div>
-                        </div>
-                        <br/>
-
-                        <div layout="column" class="md-whiteframe-z1">
-                            <md-toolbar class="md-light-blue-dark-theme md-accent">
-                                <h1 class="md-toolbar-tools"><b>My Question is:</b></h1>
-
-                            </md-toolbar>
-                            <md-content layout-margin layout-padding>
-                                <span>{{YourValue}}</span>
-                            </md-content>
-                        </div>
-                        <br/>
-
-                        <div layout="column" class="md-whiteframe-z1">
-                            <md-toolbar class="md-light-blue-dark-theme md-primary">
-                                <h1 class="md-toolbar-tools"><b>Your Answer is:</b></h1>
-
-                            </md-toolbar>
-                            <div layout="row" layout-padding id="rotatingha" layout-align="center center">
-                                <md-button flex="50" id="yarotate" class="md-raised md-light-blue-dark-theme md-accent">Yes</md-button>
-                                <md-button flex="50" id="narotate" style="display:none" class="md-raised md-light-blue-dark-theme md-warn">No</md-button>
-                            </div>
-                            <div layout="row" layout-align="center center" layout-padding id="spinningSquaresG" style="display:none">
-                                <md-progress-circular md-mode="indeterminate"></md-progress-circular>
-                            </div>
-                            <div layout="row" layout-align="center center" layout-padding>
-                                <md-button flex="50" id="answerq" style="display:none" class="md-raised md-light-blue-dark-theme md-primary" ng-bind="qun">{{qun}}</md-button>
-                            </div>
-                        </div>
-                    </div>
-                </ng-switch>
                 <!--Tab 3-->
                 <ng-switch on="data.selectedIndex" class="tabpanel-container">
                     <div layout="column" layout-margin role="tabpanel" id="tab3-content" aria-labelledby="tab3" ng-switch-when="1" md-swipe-left="next()" md-swipe-right="previous()">
@@ -213,35 +247,7 @@
 
                 </ng-switch>
             </div>
-            <!--Tab 4-->
-            <ng-switch on="data.selectedIndex" class="tabpanel-container">
-                <div layout="column" layout-margin role="tabpanel" id="tab4-content" aria-labelledby="tab4" ng-switch-when="3" md-swipe-left="next()" md-swipe-right="previous()">
-                    <md-subheader class="md-primary">Questions I Have Asked the World</md-subheader>
-                    <md-list ng-repeat="question in myqs | orderBy:'-$id'">
-                        <md-item>
-                            <md-item-content>
-                                <div layout="column" class="md-tile-content" layout="column">
-                                    <div layout="row">
-                                        <h3 flex>{{ question.Question }}</h3>
-                                        <span style="color:#03a9f4;" data-livestamp="{{question.timestamp}}"></span>
-                                    </div>
 
-                                    <div>
-                                        <progress layout-margin>
-                                            <bar value="100*question.Yes/(+question.Yes + question.No + question.Skip) | number:0" type="success"><span ng-hide="bar.value < 5">{{100*question.Yes/(+question.Yes + question.No + question.Skip) | number:0}}%</span>
-                                            </bar>
-                                            <bar value="100*question.No/(+question.Yes + question.No + question.Skip) | number:0" type="danger"><span ng-hide="bar.value < 5">{{100*question.No/(+question.Yes + question.No + question.Skip) | number:0}}%</span>
-                                            </bar>
-                                            <bar value="100*question.Skip/(+question.Yes + question.No + question.Skip) - 1 | number:0" type="info"><span ng-hide="bar.value < 5">{{100*question.Skip/(+question.Yes + question.No + question.Skip) | number:0}}%</span>
-                                            </bar>
-                                        </progress>
-                                    </div>
-                                </div>
-                            </md-item-content>
-                        </md-item>
-                    </md-list>
-                </div>
-            </ng-switch>
         </md-content>
 
     </div>
