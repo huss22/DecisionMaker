@@ -26,16 +26,42 @@
         <md-content>
             <md-tabs md-selected="data.selectedIndex" class="md-light-blue-dark-theme">
                 <md-tab id="tab1" aria-controls="tab1-content">
-                    Make a Decision
+                    <i class="fa fa-question-circle fa-lg"></i>
+                    <br>
+                    <div style="font-size:11px">
+                        <span>Decision</span>
+                        <br>
+                        <span>Maker</span>
+                    </div>
                 </md-tab>
                 <md-tab id="tab3" aria-controls="tab3-content">
-                    Ask the World
+                    <i class="fa fa-globe fa-lg"></i>
+                    <br>
+                    <div style="font-size:11px">
+                        <span>Ask the</span>
+                        <br>
+                        <span>World</span>
+                    </div>
+
+
                 </md-tab>
                 <md-tab id="tab2" aria-controls="tab2-content">
-                    Ask Me
+                    <i class="fa fa-puzzle-piece fa-lg"></i>
+                    <br>
+                    <div style="font-size:11px">
+                        <span>Ask</span>
+                        <br>
+                        <span>The App</span>
+                    </div>
                 </md-tab>
                 <md-tab id="tab4" aria-controls="tab4-content">
-                    My Questions
+                    <i class="fa fa-bullhorn fa-lg"></i>
+                    <br>
+                    <div style="font-size:11px">
+                        <span>My</span>
+                        <br>
+                        <span>Questions</span>
+                    </div>
                 </md-tab>
             </md-tabs>
 
@@ -166,77 +192,77 @@
                         </div>
                         </br>
                         <md-subheader class="md-primary">Questions the world is asking:</md-subheader>
-                            <md-toolbar class="md-light-blue-dark-theme md-whiteframe-z1" layout-padding>
-                                <span>{{rq}}</span>
-                            </md-toolbar>
-                            <div layout="column" layout-padding class="md-whiteframe-z1">
-                                <div layout="row" layout-margin>
-                                    <md-button flex class="md-raised md-light-blue-dark-theme md-accent" data-ng-click="upvote()">Yes</md-button>
-                                    <md-button flex class="md-raised md-light-blue-dark-theme md-warn" data-ng-click="downvote()">No</md-button>
-                                    <md-button flex class="md-raised md-light-blue-dark-theme md-primary" data-ng-click="skipvote()">Skip</md-button>
-                                </div>
-                                <div>
-                                    <h3>Current Question Stats:</h3>
-                                    <progress layout-margin>
-                                        <bar ng-repeat="bar in stacked track by $index" value="bar.value" type="{{bar.type}}"><span ng-hide="bar.value < 5">{{bar.value}}%</span>
-                                        </bar>
-                                    </progress>
-                                </div>
+                        <md-toolbar class="md-light-blue-dark-theme md-whiteframe-z1" layout-padding>
+                            <span>{{rq}}</span>
+                        </md-toolbar>
+                        <div layout="column" layout-padding class="md-whiteframe-z1">
+                            <div layout="row" layout-margin>
+                                <md-button flex class="md-raised md-light-blue-dark-theme md-accent" data-ng-click="upvote()">Yes</md-button>
+                                <md-button flex class="md-raised md-light-blue-dark-theme md-warn" data-ng-click="downvote()">No</md-button>
+                                <md-button flex class="md-raised md-light-blue-dark-theme md-primary" data-ng-click="skipvote()">Skip</md-button>
+                            </div>
+                            <div>
+                                <h3>Current Question Stats:</h3>
+                                <progress layout-margin>
+                                    <bar ng-repeat="bar in stacked track by $index" value="bar.value" type="{{bar.type}}"><span ng-hide="bar.value < 5">{{bar.value}}%</span>
+                                    </bar>
+                                </progress>
                             </div>
                         </div>
+                    </div>
 
                 </ng-switch>
+            </div>
+            <!--Tab 4-->
+            <ng-switch on="data.selectedIndex" class="tabpanel-container">
+                <div layout="column" layout-margin role="tabpanel" id="tab4-content" aria-labelledby="tab4" ng-switch-when="3" md-swipe-left="next()" md-swipe-right="previous()">
+                    <md-subheader class="md-primary">Questions I Have Asked the World</md-subheader>
+                    <md-list ng-repeat="question in myqs | orderBy:'-$id'">
+                        <md-item>
+                            <md-item-content>
+                                <div layout="column" class="md-tile-content" layout="column">
+                                    <div layout="row">
+                                        <h3 flex>{{ question.Question }}</h3>
+                                        <span style="color:#03a9f4;" data-livestamp="{{question.timestamp}}"></span>
+                                    </div>
+
+                                    <div>
+                                        <progress layout-margin>
+                                            <bar value="100*question.Yes/(+question.Yes + question.No + question.Skip) | number:0" type="success"><span ng-hide="bar.value < 5">{{100*question.Yes/(+question.Yes + question.No + question.Skip) | number:0}}%</span>
+                                            </bar>
+                                            <bar value="100*question.No/(+question.Yes + question.No + question.Skip) | number:0" type="danger"><span ng-hide="bar.value < 5">{{100*question.No/(+question.Yes + question.No + question.Skip) | number:0}}%</span>
+                                            </bar>
+                                            <bar value="100*question.Skip/(+question.Yes + question.No + question.Skip) - 1 | number:0" type="info"><span ng-hide="bar.value < 5">{{100*question.Skip/(+question.Yes + question.No + question.Skip) | number:0}}%</span>
+                                            </bar>
+                                        </progress>
+                                    </div>
+                                </div>
+                            </md-item-content>
+                        </md-item>
+                    </md-list>
                 </div>
-                <!--Tab 4-->
-                <ng-switch on="data.selectedIndex" class="tabpanel-container">
-                    <div layout="column" layout-margin role="tabpanel" id="tab4-content" aria-labelledby="tab4" ng-switch-when="3" md-swipe-left="next()" md-swipe-right="previous()">
-                            <md-subheader class="md-primary">Questions I Have Asked the World</md-subheader>
-                            <md-list ng-repeat="question in myqs | orderBy:'-$id'">
-                                <md-item>
-                                    <md-item-content>
-                                        <div layout="column" class="md-tile-content" layout="column">
-                                            <div layout="row">
-                                                <h3 flex>{{ question.Question }}</h3>
-                                                <span style="color:#03a9f4;" data-livestamp="{{question.timestamp}}"></span>
-                                            </div>
-
-                                            <div>
-                                                <progress layout-margin>
-                                                    <bar value="100*question.Yes/(+question.Yes + question.No + question.Skip) | number:0" type="success"><span ng-hide="bar.value < 5">{{100*question.Yes/(+question.Yes + question.No + question.Skip) | number:0}}%</span>
-                                                    </bar>
-                                                    <bar value="100*question.No/(+question.Yes + question.No + question.Skip) | number:0" type="danger"><span ng-hide="bar.value < 5">{{100*question.No/(+question.Yes + question.No + question.Skip) | number:0}}%</span>
-                                                    </bar>
-                                                    <bar value="100*question.Skip/(+question.Yes + question.No + question.Skip) - 1 | number:0" type="info"><span ng-hide="bar.value < 5">{{100*question.Skip/(+question.Yes + question.No + question.Skip) | number:0}}%</span>
-                                                    </bar>
-                                                </progress>
-                                            </div>
-                                        </div>
-                                    </md-item-content>
-                                </md-item>
-                            </md-list>
-                        </div>
-                </ng-switch>
+            </ng-switch>
         </md-content>
 
-        </div>
+    </div>
 
-        <!-- Angular Material Dependencies -->
-        <script src="bower_components/hammerjs/hammer.min.js"></script>
-        <script src="bower_components/angular/angular.min.js"></script>
-        <script src="bower_components/angular-animate/angular-animate.min.js"></script>
-        <script src="bower_components/angular-aria/angular-aria.min.js"></script>
-        <script src="bower_components/scripts/angular-touch.min.js"></script>
+    <!-- Angular Material Dependencies -->
+    <script src="bower_components/hammerjs/hammer.min.js"></script>
+    <script src="bower_components/angular/angular.min.js"></script>
+    <script src="bower_components/angular-animate/angular-animate.min.js"></script>
+    <script src="bower_components/angular-aria/angular-aria.min.js"></script>
+    <script src="bower_components/scripts/angular-touch.min.js"></script>
 
-        <!-- Angular Material Javascript now available via Google CDN; version 0.6 used here -->
-        <script src="bower_components/angular-material/angular-material.js"></script>
-        <script src="bower_components/scripts/angularfire.min.js"></script>
-        <script src="bower_components/scripts/jquery.js"></script>
-        <script src="bower_components/scripts/alertify.js"></script>
-        <script src="bower_components/scripts/moment.js"></script>
-        <script src="bower_components/scripts/livestamp.js"></script>
-        <script src="bower_components/scripts/ui-bootstrap-tpls-0.12.0.min.js"></script>
-        <script src="bower_components/scripts/main.js"></script>
-        <script src="bower_components/scripts/app.js"></script>
+    <!-- Angular Material Javascript now available via Google CDN; version 0.6 used here -->
+    <script src="bower_components/angular-material/angular-material.js"></script>
+    <script src="bower_components/scripts/angularfire.min.js"></script>
+    <script src="bower_components/scripts/jquery.js"></script>
+    <script src="bower_components/scripts/alertify.js"></script>
+    <script src="bower_components/scripts/moment.js"></script>
+    <script src="bower_components/scripts/livestamp.js"></script>
+    <script src="bower_components/scripts/ui-bootstrap-tpls-0.12.0.min.js"></script>
+    <script src="bower_components/scripts/main.js"></script>
+    <script src="bower_components/scripts/app.js"></script>
 
 
 </body>
