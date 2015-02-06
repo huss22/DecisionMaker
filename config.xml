@@ -4,8 +4,8 @@
 <widget xmlns     = "http://www.w3.org/ns/widgets"
         xmlns:gap = "http://phonegap.com/ns/1.0"
         id        = "com.huss22.decisionmaker"
-        versionCode = "17"
-        version   = "1.0.3">
+        versionCode = "18"
+        version   = "1.0.4">
 
     <name>Ask App</name>
 
