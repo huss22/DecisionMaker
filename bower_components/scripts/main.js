@@ -21,5 +21,5 @@ var gaPlugin;
 
 function onDeviceReady() {
     gaPlugin = window.plugins.gaPlugin;
-    gaPlugin.init(successHandler, errorHandler, "UA-59414317-1", 60);
+    gaPlugin.init(successHandler, errorHandler, "UA-59414317-1", 10);
 }
